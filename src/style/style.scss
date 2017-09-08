@@ -1,0 +1,251 @@
+$field_background: #f3f3f3;
+
+@font-face {
+  font-family: 'x-font';
+  src: url('../../resources/xcomponent-icons.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  text-align: center;
+  color: #0f0f0f;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: small;
+
+  .faded{
+  	opacity: 0.5
+  }
+
+  input,
+  .xbutton,{
+    &:focus{
+      box-shadow: 0 0 0 2px rgba(0, 176, 255, 0.15);
+    }
+  }
+}
+
+//
+//FIELD
+//
+
+.field{
+  width: fit-content;
+  margin: 25px;
+  display: block;
+  position: relative;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  
+  &:hover{
+    &:before{
+      box-shadow: none;
+    }
+    .msg-on{
+      display: inline-block;
+    }
+    .msg-off{
+      display: none;
+    }
+  }
+
+  input{
+    padding: 10px;
+    width: 300px;
+    outline: none;
+    background: $field_background;
+    border: 1px solid $field_background;
+    border-radius: inherit;
+  }
+}
+
+.msg{
+  font: menu;
+  color: gray;
+  padding: 2px 25px 2px 10px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 20px;
+  position: absolute;
+  background: $field_background;
+  right: 0;
+  right: -10px;
+  top: -10px;
+  display: none;
+}
+
+.field-indicator{
+  &:before{
+    font-family: 'x-font';
+    font-size: medium;
+    color: rgba(0, 0, 0, 0);
+    content: 'b';
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 20px 20px 20px 0;
+    background: $field_background;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 5px #f9756c;
+    z-index: 1;
+  }
+}
+
+.field-indicator-valid{
+  &:before{
+  	content: 'a';
+  	text-shadow: 0 5px #03A9F4;
+  }
+  &:hover{
+    &:before{
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+//
+//Button
+//
+
+.xbutton{
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 2px;
+  display: inline-block;
+  background-color: #ececec;
+  user-select: none;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,.1);
+  }
+
+  &:active{
+    border: 1px solid rgba(1,0,0,.2);
+  }
+}
+//
+//xgroup Style
+//
+.container{
+  padding: 15px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 2px;
+  display: inline-block;
+}
+//
+//Dropdown Styles
+//
+#dropdown{	
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: small;
+  text-align: initial;
+  user-select: none;
+
+  ul,li{
+    padding: 0;
+    margin: 0 0 0 5px;
+    list-style-type: none;
+  }
+}
+
+//
+//Dropdown Item Styles
+//
+#item{
+  span{
+    padding: 0;
+    margin: 0;
+    color: #000;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  .parent{
+    &:hover{
+      color: #03A9F4;
+      &:after{
+        padding: 2px 3px;
+      }
+    }
+
+    &:before{
+      content: "";
+      height: 10px;
+      width: 10px;
+      display: inline-block;
+      margin: 2px -15px;
+      position: absolute;
+      transition: all 100ms ease;
+    }
+
+    &:after{
+      content: "";
+      display: inline-block;
+      background-color: #03A9F4;
+      border-radius: 2px;
+      padding: 2px;
+      margin: 3px 10px;
+    }
+  }
+
+  .child{
+    &:hover{
+      color: #9C27B0;
+      &:after{
+        padding: 2px 3px;
+      }
+    }
+        
+    &:after{
+      content: "";
+      display: inline-block;
+      border-radius: 2px;
+      padding: 2px;
+      margin: 3px 10px;
+      background-color: #9C27B0;
+    }
+  }
+    
+  .head{
+    border-radius: 2px;
+    display: block;
+    margin: 3px;
+    padding: 5px;
+    &:hover{
+      cursor: pointer;
+    }
+    &:after{
+      content: "";
+      display: inline-block;
+      border-radius: 2px;
+      padding: 2px;
+      margin: 3px 10px;
+    }
+  }
+
+  .arrow-right{}
+
+  .arrow-down{
+    &:before{
+      transform: rotate(90deg);
+    }
+  }
+
+  .slide-fade-enter-active{
+    transition: all 100ms ease;
+  }
+
+  .slide-fade-leave-active{
+    transition: all 50ms ease-in-out;
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to{
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}

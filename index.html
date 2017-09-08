@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>head</title>
+  <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+	<link rel="stylesheet" type="text/css" href="./dist/main.css">
+  <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> -->
+</head>
+<body>
+  <div id="container">
+    <x-group>
+      <h1>X-Form</h1>
+      <x-form elname="form" value="Submit">
+        
+        <x-pass elname="password" placeholder="Password"></x-pass>
+        <x-pass elname="password1" placeholder="Confirm"></x-pass>
+        <x-mail elname="email" placeholder="E-Mail"></x-mail>
+        <x-number elname="phno" placeholder="Phone Number"></x-number>
+        <x-custome elname="custome" placeholder="Custome"></x-custome>
+        <x-select elname="select" placeholder="Select"></x-select>
+        
+      </x-form>
+      <x-dropdown>
+        <x-item><div class="goo"></div></x-item>
+        <x-item></x-item>
+        <x-item></x-item>
+      </x-dropdown>
+    </x-group>
+  </div>
+  <script>
+    var elements = [
+      {
+        el: 'xbtn',
+        type: 'xbutton',
+        methods:{
+          click: function(){
+            console.dir(elements)
+          },
+          dblclick(){
+            console.log('xbtn double click event')
+          }
+        }
+      },
+      {
+        elname: 'form',
+        type: 'xform',
+      },
+      {
+        elname: 'email',
+        type:'xmail',
+        rules: [
+          {
+            rule: 'is_not_empty',
+            warn : 'is empty'
+          },
+          {
+            rule: 'is_valid',
+            warn : 'not an email'
+          }
+        ]
+      },
+      {
+        elname: 'phno',
+        type:'xnumber',
+        rules: [
+          {
+            rule: 'is_not_empty',
+            warn : 'is empty'
+          },
+          {
+            rule: 'is_valid',
+            warn : 'not an phone number'
+          }
+        ]
+      },
+      {
+        elname: 'password',
+        type: 'xpass',
+        rules: [
+          {
+            rule: '8char',
+            warn: '8char-warn'
+          },
+          {
+            rule: 'is_match',
+            exp: '^[a-zA-Z0-9]+$',
+            warn: 'alfanumeric-warn'
+          }, 
+          {
+            rule: 'is_not_empty',
+            warn: 'පිරවිය යුතුයි'
+          },
+          {
+            rule: 'compare',
+            roll: 'parent',
+            link: 'password1',
+            warn: 'copare-warn'
+          }
+        ]
+      },
+      {
+        elname: 'password1',
+        type: 'xpass',
+        rules: [
+          {
+            rule: 'compare',
+            roll: 'child',
+            link: 'password',
+            warn: 'copare-warn'
+          }
+        ]
+      },
+      {
+        elname: 'custome',
+        type: 'xcustome',
+        rules: [
+          {
+            rule: 'is_match',
+            exp: 'se',
+            warn: 'se'
+          },
+          {
+            rule: 'is_match',
+            exp: 'ro',
+            warn: 'ro'
+          },
+          {
+            rule: 'is_not_empty',
+            warn: 'පිරවිය යුතුයි'
+          },
+        ]
+      },
+      {
+        elname: 'select',
+        type: 'xselect',
+        rules: [
+          {
+            rule: 'is_not_empty',
+            warn: 'පිරවිය යුතුයි'
+          }
+        ],
+        items: [
+          {
+            value: 'a',
+            extra: 'hello'
+          },
+          {
+            value: 'e',
+            extra: 'helloo'
+          },
+          {
+            value: 'i',
+            extra: 'hellooo'
+          }
+        ]
+      }
+    ]
+  </script>
+  <script src="./dist/bundle.js"></script>
+</body>
+</html>
